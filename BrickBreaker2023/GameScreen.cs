@@ -91,21 +91,21 @@ namespace BrickBreaker2023
 
             foreach (Ball b in balls)
             {
-                //ball.Collision(b);
+                ball.Collision(b);
             }
 
-            //if (ball.Collision(hero))
-            //{
-            //    lives++;
-            //}
+            if (ball.Collision(hero))
+            {
+                lives++;
+            }
 
             foreach (Ball b in balls)
             {
-                //if (b.Collision(hero))
-                //{
-                //    lives--;
-                //    break;
-                //}
+                if (b.Collision(hero))
+                {
+                    lives--;
+                    break;
+                }
             }
 
             if (lives == 0)
@@ -140,10 +140,6 @@ namespace BrickBreaker2023
             bricks.Add(new Rectangle(330, 370, 30, 10));
             bricks.Add(new Rectangle(330, 390, 30, 10));
             bricks.Add(new Rectangle(360, 400, 30, 10));
-
-
-
-
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
