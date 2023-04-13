@@ -149,7 +149,7 @@ namespace BrickBreaker2023
 
             for (int i = 0; i < bricks.Count(); i++)
             {
-                e.Graphics.FillRectangle(redBrush, bricks[i]);
+                e.Graphics.FillRectangle(greenBrush, bricks[i]);
             }
 
             foreach (Ball b in balls)
