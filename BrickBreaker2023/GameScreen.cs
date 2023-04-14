@@ -16,7 +16,7 @@ namespace BrickBreaker2023
         public static int lives = 3;
         int time = 0;
 
-        //Car car = new Car(10, 10, 10, 10);
+        Ball car = new ball(10, 10, 10, 10);
         List<Rectangle> bricks = new List<Rectangle>();
 
         Ball ball = new Ball(10, 10, 10, 10);
@@ -94,16 +94,11 @@ namespace BrickBreaker2023
                 ball.Collision(b);
             }
 
-            if (ball.Collision(hero))
-            {
-                lives++;
-            }
-
             foreach (Ball b in balls)
             {
                 if (b.Collision(hero))
                 {
-                    lives--;
+                    
                     break;
                 }
             }
@@ -131,15 +126,36 @@ namespace BrickBreaker2023
 
             bricks.Clear();
             bricks.Add(new Rectangle(270, 270, 30, 10));
-            bricks.Add(new Rectangle(270, 290, 30, 10));
-            bricks.Add(new Rectangle(270, 310, 30, 10));
-            bricks.Add(new Rectangle(270, 330, 30, 10));
-            bricks.Add(new Rectangle(300, 320, 30, 10));
-            bricks.Add(new Rectangle(300, 340, 30, 10));
-            bricks.Add(new Rectangle(300, 360, 30, 10));
-            bricks.Add(new Rectangle(330, 370, 30, 10));
-            bricks.Add(new Rectangle(330, 390, 30, 10));
-            bricks.Add(new Rectangle(360, 400, 30, 10));
+            bricks.Add(new Rectangle(250, 250, 30, 10));
+            bricks.Add(new Rectangle(290, 250, 30, 10));
+            bricks.Add(new Rectangle(230, 230, 30, 10));
+            bricks.Add(new Rectangle(270, 230, 30, 10));
+            bricks.Add(new Rectangle(310, 230, 30, 10));
+            bricks.Add(new Rectangle(210, 210, 30, 10));
+            bricks.Add(new Rectangle(250, 210, 30, 10));
+            bricks.Add(new Rectangle(290, 210, 30, 10));
+            bricks.Add(new Rectangle(330, 210, 30, 10));
+            
+            if (ball.Y > this.Height)
+            {
+                ball.X = 280;
+                ball.Y = 300;
+
+                hero.X = 280;
+                hero.Y = 450;
+
+                lives -= 1;
+                livesLabel.Text = $"x{lives}";
+            }
+            
+            for (int i = 0; i < bricks.Count(); i++)
+            {
+                if (ball.IntersectsWith(bricks[i]))
+                {
+                    bricks.RemoveAt(i);
+                    ballYspeed *= -1;
+                }
+            }
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
