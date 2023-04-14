@@ -98,7 +98,7 @@ namespace BrickBreaker2023
             {
                 if (b.Collision(hero))
                 {
-                    
+                    lives++;
                     break;
                 }
             }
